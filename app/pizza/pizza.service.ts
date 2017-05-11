@@ -12,7 +12,7 @@ export interface State {
   toppings: Topping[]
 }
 
-const state: State = {
+const initialState: State = {
   pizzas: [
     { name: 'New Yorker', toppings: ['Bacon', 'Pepperoni', 'Ham', 'Mushrooms'] },
     { name: 'Hot & Spicy', toppings: ['Jalapenos', 'Herbs', 'Pepperoni', 'Chicken'] },
@@ -27,7 +27,7 @@ const state: State = {
 @Injectable()
 export class PizzaService {
 
-  private subject = new BehaviorSubject<State>(state);
+  private subject = new BehaviorSubject<State>(initialState);
   store = this.subject.asObservable().distinctUntilChanged();
 
   select<T>(name: string): Observable<T> {
